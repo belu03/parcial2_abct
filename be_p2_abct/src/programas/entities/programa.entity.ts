@@ -16,6 +16,12 @@ export enum EstadoPrograma {
   FINALIZADO = 'Finalizado',
 }
 
+export enum ModalidadPrograma {
+  PRESENCIAL = 'Presencial',
+  VIRTUAL = 'Virtual',
+  MIXTO = 'Mixto',
+}
+
 @Entity('programas')
 export class Programa {
   @PrimaryGeneratedColumn('identity')
@@ -49,6 +55,13 @@ export class Programa {
   })
   estado: EstadoPrograma;
 
+  @Column({
+  type: 'enum',
+  enum: ModalidadPrograma,
+  default: ModalidadPrograma.PRESENCIAL,
+  })
+  modalidad: ModalidadPrograma;
+
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
 
@@ -58,6 +71,7 @@ export class Programa {
   @DeleteDateColumn({ name: 'fecha_eliminacion' })
   fechaEliminacion: Date;
 
+  
   @ManyToOne(() => NivelAcademico, (nivelAcademico) => nivelAcademico.programas)
   @JoinColumn({ name: 'id_nivel_academico', referencedColumnName: 'id' })
   nivelAcademico: NivelAcademico;

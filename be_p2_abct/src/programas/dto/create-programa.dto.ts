@@ -11,6 +11,7 @@ import {
   Min,
 } from 'class-validator';
 import { EstadoPrograma } from '../entities/programa.entity';
+import { ModalidadPrograma } from '../entities/programa.entity';
 
 export class CreateProgramaDto {
   @ApiProperty()
@@ -56,10 +57,22 @@ export class CreateProgramaDto {
   @IsString({ message: 'La fecha de inicio debe tener formato YYYY-MM-DD' })
   readonly fechaInicio: string;
 
+  @ApiProperty()
+  @IsNotEmpty({ message: 'La modalidad de clases es obligatoria' })
+  @IsString({ message: 'La modalidad de clases debe ser una cadena de texto' })
+  readonly modalidadClases: string;
+
   @ApiProperty({ enum: EstadoPrograma })
   @IsDefined({ message: 'El estado es obligatorio' })
   @IsEnum(EstadoPrograma, {
     message: `El estado debe ser: ${Object.values(EstadoPrograma).join(', ')}`,
   })
   readonly estado: EstadoPrograma;
+
+  @ApiProperty({ enum: ModalidadPrograma })
+  @IsDefined({ message: 'Es necesario especificar la modalidad de clases' })
+  @IsEnum(ModalidadPrograma, {
+  message: `La modalidad debe ser: ${Object.values(ModalidadPrograma).join(', ')}`,
+  })
+   readonly modalidad: ModalidadPrograma;
 }

@@ -1,4 +1,10 @@
 import type { NivelAcademico } from './nivel-academico'
+export type Modalidad = 'Presencial' | 'Virtual' | 'Mixto'
+export const modalidadClases: { label: string; value: Modalidad }[] = [
+  { label: 'Presencial', value: 'Presencial' },
+  { label: 'Virtual', value: 'Virtual' },
+  { label: 'Mixto', value: 'Mixto' },
+]
 
 export interface Programa {
   id: number
@@ -11,4 +17,5 @@ export interface Programa {
   fechaInicio: string
   estado: string
   nivelAcademico: NivelAcademico
+  modalidad: Modalidad
 }

@@ -36,6 +36,12 @@ const estadosPrograma = [
 
 const programa = ref<Programa>({ ...props.programa })
 
+const modalidadesPrograma = [
+  { label: 'Presencial', value: 'Presencial' },
+  { label: 'Virtual', value: 'Virtual' },
+  { label: 'Mixto', value: 'Mixto' },
+]
+
 watch(
   () => props.programa,
   (newVal) => {
@@ -186,6 +192,20 @@ watch(
           class="flex-auto"
         />
       </div>
+
+     <!-- Modalidad -->
+    <div class="flex items-center gap-4 mb-4">
+    <label for="modalidad" class="font-semibold w-4">Modalidad Clases</label>
+    <Select
+      id="modalidad"
+      v-model="programa.modalidad"
+      :options="modalidadesPrograma"
+      optionLabel="label"
+      optionValue="value"
+      class="flex-auto"
+      />
+    </div>
+
       <div class="flex justify-end gap-2">
         <Button
           type="button"
